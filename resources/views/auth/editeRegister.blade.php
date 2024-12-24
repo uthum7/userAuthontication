@@ -1,5 +1,5 @@
 @extends("layouts.default")
-@section("title","Register")
+@section("title","EditRegister")
 @section("content")
 <main class="mt-5">
     <div class="container">
@@ -18,12 +18,13 @@
                 <div class="card">
                     <h3 class="card-header text-center">Register</h3>
                     <div class="card-body">
-                        <form method="POST" action="{{ route("register.post") }}">
+                        <form method="POST" action="{{ route('update',$users->id) }}">
+                            @method('PUT')
                             @csrf
                             <!--name Input-->
                             <div class="form-group mb-3">
                                 <input type="text" placeholder="Fullname"
-                                       id="name" class="form-control" name="fullname"
+                                       id="name" class="form-control" name="fullname" value="{{ $users->fullname }}"
                                        autofocus>
                                 @if ($errors->has('fullname'))
                                     <span class="text-danger">
@@ -35,7 +36,7 @@
                             <!-- Email Input -->
                             <div class="form-group mb-3">
                                 <input type="text" placeholder="Email"
-                                       id="email" class="form-control" name="email"
+                                       id="email" class="form-control" name="email" value="{{ $users->email }}"
                                        required autofocus>
                                 @if ($errors->has('email'))
                                     <span class="text-danger">
@@ -47,7 +48,7 @@
                             <!-- Password Input -->
                             <div class="form-group mb-3">
                                 <input type="password" placeholder="Password"
-                                       id="password" class="form-control" name="password"
+                                       id="password" class="form-control" name="password" value="{{ $users->password }}"
                                        required>
                                 @if ($errors->has('password'))
                                     <span class="text-danger">
@@ -58,7 +59,7 @@
 
                             <!-- Submit Button -->
                             <div class="d-grid mx-auto">
-                                <button type="submit" class="btn btn-dark btn-block">Sign Up</button>
+                                <button type="submit" class="btn btn-dark btn-block">Update</button>
                             </div>
                         </form>
                     </div>
